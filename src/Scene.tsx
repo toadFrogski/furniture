@@ -1,13 +1,13 @@
 import { CameraControls } from "@react-three/drei";
 import { FC, useMemo } from "react";
-import useCube from "./hooks/useCube";
+import useConstructor from "./hooks/useConstructor";
 import { useThree } from "@react-three/fiber";
 
 const Scene: FC = () => {
-  const { model } = useCube();
-  useThree(({camera}) => {
+  const { model } = useConstructor();
+  useThree(({ camera }) => {
     camera.position.set(100, 10, 100);
-  })
+  });
 
   const renderObject = useMemo(
     () => (
@@ -17,6 +17,7 @@ const Scene: FC = () => {
             key={prop.id}
             scale={[prop.scale.x, prop.scale.y, prop.scale.z]}
             position={[prop.position.x, prop.position.y, prop.position.z]}
+            rotation={[prop.rotation.x, prop.rotation.y, prop.rotation.z]}
             geometry={prop.geometry}
             material={prop.material}
           />
@@ -31,7 +32,7 @@ const Scene: FC = () => {
       <ambientLight />
       <directionalLight position={[1, 1, 3]} intensity={Math.PI} />
       {renderObject}
-      <CameraControls />
+      <CameraControls truckSpeed={0} />
     </>
   );
 };

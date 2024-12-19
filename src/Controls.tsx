@@ -1,20 +1,22 @@
 import { FC, useMemo } from "react";
-import useCube from "./hooks/useCube";
+import useConstructor from "./hooks/useConstructor";
 import { Action, Control, Prop3D, ResizeArgs } from "./data/types";
 
 const Controls: FC = () => {
-  const { controls, model, setModel } = useCube();
+  const { controls, model, setModel } = useConstructor();
 
   const handleActions = (actions: Action[], model: Prop3D[], setModel: (model: Prop3D[]) => void, value: string) => {
     for (const action of actions) {
       switch (action.type) {
         case "resize":
-          resizeAction(action.args, model, setModel, value);
+          model = resizeAction(action.args, model, value);
           break;
         default:
           break;
       }
     }
+
+    setModel(model);
   };
 
   const renderControls = useMemo(() => {
@@ -28,7 +30,7 @@ const Controls: FC = () => {
                 type="range"
                 min={control.min}
                 max={control.max}
-                defaultValue={(control.max + control.min) / 2}
+                defaultValue={control.default}
                 onChange={(e) => handleActions(control.actions, model, setModel, e.target.value)}
               />
             </label>
@@ -46,7 +48,7 @@ const Controls: FC = () => {
 
 export default Controls;
 
-const resizeAction = (args: ResizeArgs, model: Prop3D[], setModel: (model: Prop3D[]) => void, value: string) => {
+const resizeAction = (args: ResizeArgs, model: Prop3D[], value: string): Prop3D[] => {
   const updatedModel = model.map((prop) => {
     if (prop.id !== args.id) {
       return prop;
@@ -60,5 +62,5 @@ const resizeAction = (args: ResizeArgs, model: Prop3D[], setModel: (model: Prop3
     return prop;
   });
 
-  setModel(updatedModel);
+  return updatedModel;
 };

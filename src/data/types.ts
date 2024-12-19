@@ -28,6 +28,7 @@ type RangeControl = BaseControl & {
   type: "range";
   min: number;
   max: number;
+  default?: number;
 };
 
 export type Control = RangeControl;

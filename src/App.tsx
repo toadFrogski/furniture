@@ -1,11 +1,11 @@
 import { Canvas } from "@react-three/fiber";
-import { CubeProvider } from "./contexts/cube";
+import { ConstructorProvider } from "./contexts/constructor";
 import Controls from "./Controls";
 import Scene from "./Scene";
 
 const App = () => {
   return (
-    <CubeProvider>
+    <ConstructorProvider>
       <div className="min-h-screen bg-black flow-root">
         <div className="flex justify-center gap-6">
           <div className="w-[500px] h-[500px] bg-gray-800 rounded-xl mt-6">
@@ -18,7 +18,7 @@ const App = () => {
           </div>
         </div>
       </div>
-    </CubeProvider>
+    </ConstructorProvider>
   );
 };
 

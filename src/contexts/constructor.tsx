@@ -3,29 +3,29 @@ import { createContext, FC, PropsWithChildren, useState } from "react";
 import { cabinet } from "../data/models";
 import { Control, Prop3D } from "../data/types";
 
-type cubeProps = {
+type constructorProps = {
   model: Prop3D[];
   setModel: (model: Prop3D[]) => void;
   controls: Control[];
 };
 
-const initialState: cubeProps = {
+const initialState: constructorProps = {
   model: [],
   setModel: () => {},
   controls: [],
 };
 
-const CubeContext = createContext<cubeProps>(initialState);
+const ConstructorContext = createContext<constructorProps>(initialState);
 
-const CubeProvider: FC<PropsWithChildren> = ({ children }) => {
+const ConstructorProvider: FC<PropsWithChildren> = ({ children }) => {
   const [model, setModel] = useState(cabinet.props3D);
   const [controls] = useState(cabinet.controls);
 
   return (
-    <CubeContext.Provider value={{ model: model, setModel: setModel, controls: controls }}>
+    <ConstructorContext.Provider value={{ model: model, setModel: setModel, controls: controls }}>
       {children}
-    </CubeContext.Provider>
+    </ConstructorContext.Provider>
   );
 };
 
-export { CubeContext, CubeProvider };
+export { ConstructorProvider, ConstructorContext };
