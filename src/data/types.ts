@@ -1,4 +1,4 @@
-import { BufferGeometry, Material, Object3D } from "three";
+import { BufferGeometry, Material, Object3D, Texture } from "three";
 
 type Vector3 = {
   x: number;
@@ -45,21 +45,37 @@ type JustifyAction = {
   args: JustifyArgs;
 };
 
-export type Action = ResizeAction | MoveAction | JustifyAction;
+export type ChangeTextureArgs = {
+  id: string;
+};
+
+type ChangeTextureAction = {
+  type: "change:texture";
+  args: ChangeTextureArgs;
+};
+
+export type Action = ResizeAction | MoveAction | JustifyAction | ChangeTextureAction;
+
+export type ControlValue = string | Texture;
 
 type BaseControl = {
   name: string;
   actions: Action[];
 };
 
-type RangeControl = BaseControl & {
+export type RangeControl = BaseControl & {
   type: "range";
   min: number;
   max: number;
   default?: number;
 };
 
-export type Control = RangeControl;
+export type ChangeTextureControl = BaseControl & {
+  type: "change:texture";
+  textures: string[];
+};
+
+export type Control = RangeControl | ChangeTextureControl;
 
 type BaseProp = {
   id: string;
