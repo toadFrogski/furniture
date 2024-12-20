@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { ConstructorProvider } from "./contexts/constructor";
-import Controls from "./Controls";
-import Scene from "./Scene";
+import Controls from "./components/Controls";
+import Scene from "./components/Scene";
 
 const App = () => {
   return (
