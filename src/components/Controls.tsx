@@ -3,7 +3,7 @@ import useConstructor from "../hooks/useConstructor";
 import { Action, Control, ControlValue } from "../data/types";
 import RangeControl from "./controls/RangeControl";
 import act from "../utils/actions";
-import ChangeTextureControl from "./controls/ChangeTextureControl";
+import TextureControl from "./controls/TextureControl";
 
 const Controls: FC = () => {
   const { controls, model, setModel } = useConstructor();
@@ -27,7 +27,7 @@ const Controls: FC = () => {
 
         case "change:texture":
           return (
-            <ChangeTextureControl
+            <TextureControl
               control={control}
               onSelectTexture={(texture) => handleActions(control.actions, texture)}
             />
