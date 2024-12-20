@@ -85,7 +85,11 @@ const cabinet: Object = {
       name: "Change color",
       type: "change:texture",
       textures: ["/yellow.jpg", "/white.jpg"],
-      actions: [{ type: "change:texture", args: { id: "mainBox" } }],
+      actions: [
+        { type: "change:texture", args: { id: "mainBox" } },
+        { type: "change:texture", args: { id: "shelf1" } },
+        { type: "change:texture", args: { id: "shelf2" } },
+      ],
     },
   ],
 };
