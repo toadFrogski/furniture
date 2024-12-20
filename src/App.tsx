@@ -7,13 +7,13 @@ const App = () => {
   return (
     <ConstructorProvider>
       <div className="min-h-screen bg-black flex flex-col">
-        <main className="flex justify-center gap-6 flex-1">
-          <div className="w-[500px] h-[500px] bg-gray-800 rounded-xl mt-6">
+        <main className="flex justify-center gap-6 flex-1 flex-wrap p-6">
+          <div className="bg-gray-800 rounded-xl mt-6 flex-[2]">
             <Canvas>
               <Scene />
             </Canvas>
           </div>
-          <div className="max-w-[500px] max-h-[500px] bg-gray-800 rounded-xl mt-6">
+          <div className="bg-gray-800 rounded-xl mt-6 flex-1">
             <Controls />
           </div>
         </main>

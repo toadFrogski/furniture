@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, Texture } from "three";
+import { Mesh, MeshStandardMaterial, Texture } from "three";
 import { Action, ChangeTextureArgs, ControlValue, MoveArgs, Prop3D, ResizeArgs } from "../data/types";
 
 const _moveAction = (model: Prop3D[], value: string, args: MoveArgs): Prop3D[] => {
@@ -61,7 +61,7 @@ const _changeTextureAction = (model: Prop3D[], texture: Texture, args: ChangeTex
       return prop;
     }
 
-    const material = new MeshBasicMaterial({ map: texture });
+    const material = new MeshStandardMaterial({ map: texture });
 
     switch (prop.type) {
       case "mesh":
